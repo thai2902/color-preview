@@ -102,6 +102,17 @@
             </ion-item>
           </ion-menu-toggle>
         </ion-list>
+
+        <ion-list>
+          <ion-list-header>
+            Themes
+          </ion-list-header>
+          <ion-menu-toggle autoHide="false">
+            <ion-item>
+              <ion-button *ngFor="let theme of themes | keyvalue" (click)="changeTheme(theme.key)">{{theme.key}}</ion-button>
+            </ion-item>
+          </ion-menu-toggle>
+        </ion-list>
       </ion-content>
     </ion-menu>
 

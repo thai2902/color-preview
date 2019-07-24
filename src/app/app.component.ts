@@ -10,6 +10,7 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Storage } from '@ionic/storage';
 
 import { UserData } from './providers/user-data';
+import { ThemeService } from './theme.service';
 
 @Component({
   selector: 'app-root',
@@ -42,6 +43,42 @@ export class AppComponent implements OnInit {
   ];
   loggedIn = false;
 
+  themes = {
+    // autumn: {
+    //   primary: '#F78154',
+    //   secondary: '#4D9078',
+    //   tertiary: '#B4436C',
+    //   light: '#FDE8DF',
+    //   medium: '#FCD0A2',
+    //   dark: '#B89876'
+    // },
+    blue: {
+      primary: '#5AA9E6',
+      secondary: '#7FC8F8',
+      tertiary: '#FFE45E',
+    },
+    pink: {
+      primary: '#E27396',
+      secondary: '#EA9AB2',
+      // tertiary: '#F2F5FF',
+    },
+    // white: {
+    //   primary: '#FFFFFF',
+    //   secondary: '#EA9AB2',
+    //   // tertiary: '#B4436C',
+    //   light: '#f2f2f2',
+    //   // medium: '#FCD0A2',
+    //   dark: '#000000'
+    // },
+    red: {
+      primary: '#D64045',
+      secondary: '#E9FFF9',
+      // tertiary: '#9ED8DB',
+      // light: '#467599',
+      // medium: '#1D3354'
+    }
+  };
+
   constructor(
     private events: Events,
     private menu: MenuController,
@@ -53,8 +90,13 @@ export class AppComponent implements OnInit {
     private userData: UserData,
     private swUpdate: SwUpdate,
     private toastCtrl: ToastController,
+    private theme: ThemeService
   ) {
     this.initializeApp();
+  }
+
+  changeTheme(name) {
+    this.theme.setTheme(this.themes[name]);
   }
 
   async ngOnInit() {
